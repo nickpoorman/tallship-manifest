@@ -2,7 +2,7 @@
 
 High availability service management
 
-[![build status](https://secure.travis-ci.org/nickpoorman/manifest.png)](http://travis-ci.org/nickpoorman/manifest)
+[![build status](https://secure.travis-ci.org/nickpoorman/tallship-manifest.png)](http://travis-ci.org/nickpoorman/tallship-manifest)
 
 *RAND: Ship's manifests, sir. I think they're in order now.*
 *KIRK: Thank you, Yeoman.*
