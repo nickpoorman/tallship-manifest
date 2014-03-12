@@ -15,7 +15,6 @@ Each `manifest` on the network will maintain (eventually consistent) information
 
 ```
 var Manifest = require('tallship-manifest');
-var m = new Manifest(opts);
 ```
 
 A manifest may exist in client mode or server mode or both. Cyclic connections have no effect on the network (other than the increase in data being transmitted around the network).
