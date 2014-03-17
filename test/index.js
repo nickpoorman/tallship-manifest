@@ -1,4 +1,5 @@
 var should = require('should');
+var _ = require('underscore');
 
 var net = require('net');
 
@@ -104,5 +105,76 @@ describe('manifest', function() {
       });
     });
 
+  });
+
+  describe('hub', function(done) {
+
+    var m1;
+    var m2;
+    var m3;
+
+    after(function(done) {
+      this.timeout(10000);
+      var m1Closed = false;
+      var m2Closed = false;
+      var m3Closed = false;
+
+      m1.close();
+      m2.close();
+      m3.close();
+
+      m1.once('close', function() {
+        m1Closed = true;
+        if (m1Closed && m2Closed && m3Closed) done();
+      });
+      m2.once('close', function() {
+        m2Closed = true;
+        if (m1Closed && m2Closed && m3Closed) done();
+      });
+      m3.once('close', function() {
+        m3Closed = true;
+        if (m1Closed && m2Closed && m3Closed) done();
+      });
+    });
+
+    it('should not get the same message twice', function(done) {
+      this.timeout(5000);
+
+      var events = {};
+
+      m1 = new Manifest();
+      m1.createServer();
+
+      var register = 2;
+      m1.hub.bus.on('register', function(service) {
+        if (!events[service.owner]) events[service.owner] = [];
+        var key = service.id + ':' + service.timestamp;
+        events[service.owner].should.not.containEql(key);
+        events[service.owner].push(key);
+        if (!--register) done();
+      });
+
+      m2 = new Manifest();
+      m2.createServer({
+        port: 4100
+      });
+
+      m3 = new Manifest();
+      m3.createServer({
+        port: 5100
+      });
+
+      var hls1 = m1.connect({
+        port: 4100
+      });
+
+      var hls2 = m2.connect({
+        port: 5100
+      });
+
+      var hls3 = m3.connect({
+        port: 3100
+      });
+    });
   });
 });
