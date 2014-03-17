@@ -137,18 +137,20 @@ describe('manifest', function() {
       });
     });
 
-    it('should not get the same message twice', function(done) {
+    it('should not get the same event twice', function(done) {
       this.timeout(5000);
 
       var events = {};
 
       m1 = new Manifest();
-      m1.createServer();
+      m1.createServer({
+        port: 3100
+      });
 
       var register = 2;
       m1.hub.bus.on('register', function(service) {
         if (!events[service.owner]) events[service.owner] = [];
-        var key = service.id + ':' + service.timestamp;
+        var key = service.owner + ':' + service.id + ':' + service.timestamp;
         events[service.owner].should.not.containEql(key);
         events[service.owner].push(key);
         if (!--register) done();
