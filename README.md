@@ -116,6 +116,34 @@ example:
  }
  ```
 
+### var services = m.get(role)
+
+Returns a copy of the underlying services that match `role`.
+
+`role` can be a formatted as `example@0.1.2`, `example`, or a (partial) service object '{ role: "example" }'.
+
+example => m.get('manifest'): 
+```
+ {
+   BDE40A1384EA8E955D3DFC: {
+     role: 'manifest@0.0.1',
+     id: 'BDE40A1384EA8E955D3DFC',
+     address: '127.0.0.1',
+     port: 4100,
+     owner: '7190E29DE507F838D0F28ECD',
+     timestamp: 1394636407332
+   },
+   '521FA1549183337802DE531F': {
+     role: 'manifest@0.0.2',
+     id: '521FA1549183337802DE531F',
+     address: '127.0.0.1',
+     port: 3100,
+     owner: '54FA7DD59B31D4971FF4311F',
+     timestamp: 1394636405385
+   }
+ }
+ ```
+
 ### m.close()
 
 Closes all the upstream and downstream sockets.
