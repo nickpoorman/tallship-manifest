@@ -10,7 +10,7 @@
       "url": "http://nickpoorman.com/"
     }
   ],
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "inherits": "^2.0.1",
     "underscore": "^1.6.0",
