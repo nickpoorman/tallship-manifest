@@ -137,6 +137,18 @@ Emitted whenever a service is freed (unregistered).
 
 Emitted when the sockets have all been closed after calling `m.close()`.
 
+## m.on('connect', function () {})
+
+Emitted after a `connect()` to a manifest.
+
+## m.on('connection', function (net.Socket) {})
+
+Emitted after another manifest connects to this manifest, --when an incoming connection has been made.
+
+## m.on('sync', function (net.Socket) {})
+
+Emitted after the initial handshake. At this point, the registry will contain any services that were in the remote registry when the connection was established. --The remote registry sends a copy of their registry during the handshake.
+
 
 
 # Thanks
