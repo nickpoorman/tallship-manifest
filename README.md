@@ -177,6 +177,10 @@ Emitted after another manifest connects to this manifest, --when an incoming con
 
 Emitted after the initial handshake. At this point, the registry will contain any services that were in the remote registry when the connection was established. --The remote registry sends a copy of their registry during the handshake.
 
+## m.on('heartbeat', function () {})
+
+Emitted after each heartbeat. This becomes useful when you want to know when / ensure any new registrations have been broadcast.
+
 
 
 # Thanks
